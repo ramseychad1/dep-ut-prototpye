@@ -1,6 +1,9 @@
 # macOS
 .DS_Store
 
+# Requirements docs
+pdf-requirements/
+
 # Angular
 ut-cares-portal/node_modules/
 ut-cares-portal/dist/
