@@ -1,0 +1,16 @@
+.step-container { padding: 24px 32px; max-width: 760px; }
+.breadcrumb { font-size: 13px; color: #757575; margin-bottom: 12px; a { color: #1565C0; text-decoration: none; cursor: pointer; } span { margin: 0 2px; } }
+.section-title { font-size: 22px; font-weight: 400; margin: 0 0 4px; color: #212121; }
+.section-subtitle { font-size: 14px; color: #616161; margin: 0 0 24px; }
+.review-section { padding: 16px 0; }
+.review-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.review-section-title { font-size: 16px; font-weight: 600; color: #212121; margin: 0; }
+.edit-btn { color: #1565C0 !important; font-size: 13px; }
+.section-divider { margin: 4px 0; }
+.review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
+.review-item { display: flex; flex-direction: column; gap: 2px; &.full-width { grid-column: 1 / -1; } }
+.review-label { font-size: 11px; color: #757575; text-transform: uppercase; letter-spacing: 0.5px; }
+.review-value { font-size: 14px; color: #212121; font-weight: 400; }
+.action-buttons { display: flex; gap: 12px; margin-top: 32px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+.btn-next { background-color: #BE1E2D !important; color: white !important; padding: 0 32px !important; }
+.btn-back { border: 1px solid #9e9e9e !important; color: #424242 !important; }

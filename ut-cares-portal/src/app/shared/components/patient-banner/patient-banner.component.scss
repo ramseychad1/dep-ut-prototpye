@@ -1,0 +1,55 @@
+.patient-banner {
+  display: flex;
+  align-items: center;
+  padding: 12px 0 16px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.patient-avatar {
+  width: 44px;
+  height: 44px;
+  background: #bdbdbd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+
+  mat-icon { font-size: 24px; width: 24px; height: 24px; line-height: 24px; }
+}
+
+.patient-name-block {
+  min-width: 180px;
+}
+
+.patient-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: #212121;
+}
+
+.patient-meta {
+  display: flex;
+  gap: 32px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-label {
+  font-size: 11px;
+  color: #757575;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.meta-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+}

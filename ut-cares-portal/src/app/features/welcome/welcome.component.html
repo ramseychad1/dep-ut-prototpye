@@ -1,0 +1,61 @@
+<div class="welcome-shell">
+  <app-header></app-header>
+
+  <main class="welcome-main">
+    <div class="welcome-content">
+
+      <div class="welcome-text">
+        <h1 class="welcome-title">Welcome to the Sonxtra Support™ Digital Enrollment Portal</h1>
+        <p class="welcome-para">
+          This site offers a convenient way to complete Patient enrollment into the program.
+        </p>
+        <p class="welcome-para">
+          In a few easy steps, this site will allow enrollment into Sonxtra Support™ for
+          Orenitram®, Remodulin®, and TYVASO®. The whole process should take a few minutes.
+          You will be asked to provide Patient and Provider information, and electronically sign
+          your Consents/Authorizations. You will be able to review and submit the application
+          and print a copy for your records.
+        </p>
+      </div>
+
+      <div class="start-card">
+        <h2 class="card-title">Start Enrollment</h2>
+
+        <div class="program-field">
+          <label class="program-label">Select the Program</label>
+          <div class="program-value-box">
+            <span>Sonxtra Support™</span>
+            <span class="chevron">&#9660;</span>
+          </div>
+        </div>
+
+        <div class="recaptcha-mock">
+          <div class="recaptcha-box" [class.verified]="recaptchaChecked()" (click)="!recaptchaChecked() && mockRecaptcha()">
+            <div class="recaptcha-check">
+              <mat-icon *ngIf="recaptchaChecked()" class="check-mark">check</mat-icon>
+              <div class="recaptcha-checkbox" *ngIf="!recaptchaChecked()"></div>
+            </div>
+            <span class="recaptcha-label">I'm not a robot</span>
+            <div class="recaptcha-logo">
+              <div class="recaptcha-icon">reCAPTCHA</div>
+              <div class="recaptcha-sub">Privacy · Terms</div>
+            </div>
+          </div>
+          <p class="recaptcha-error" *ngIf="showError()">
+            <mat-icon class="error-icon">error</mat-icon>
+            Please acknowledge you are not a robot.
+          </p>
+        </div>
+
+        <div class="role-buttons">
+          <button mat-flat-button class="btn-patient" disabled>I'm a Patient</button>
+          <button mat-flat-button class="btn-provider" (click)="startAsProvider()">I'm a Provider</button>
+        </div>
+        <p class="patient-note">Patient enrollment is managed through your specialty pharmacy.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

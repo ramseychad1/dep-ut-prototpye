@@ -1,0 +1,22 @@
+<div class="patient-banner">
+  <div class="patient-avatar">
+    <mat-icon>person</mat-icon>
+  </div>
+  <div class="patient-name-block">
+    <span class="patient-name">{{ patient.lastName }}, {{ patient.firstName }}</span>
+  </div>
+  <div class="patient-meta">
+    <div class="meta-item">
+      <span class="meta-label">Date of Birth</span>
+      <span class="meta-value">{{ patient.dateOfBirth }}</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Sex</span>
+      <span class="meta-value">{{ patient.sex }}</span>
+    </div>
+    <div class="meta-item" *ngIf="productName">
+      <span class="meta-label">Product</span>
+      <span class="meta-value">{{ productName }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.step-container {
+  padding: 24px 32px;
+  max-width: 700px;
+}
+.breadcrumb {
+  font-size: 13px;
+  color: #757575;
+  margin-bottom: 12px;
+  a { color: #1565C0; text-decoration: none; cursor: pointer; }
+  span { margin: 0 2px; }
+}
+.section-title { font-size: 22px; font-weight: 400; margin: 0 0 4px; color: #212121; }
+.section-subtitle { font-size: 14px; color: #616161; margin: 0 0 20px; }
+.subsection-title {
+  font-size: 15px; font-weight: 500; margin: 24px 0 12px; color: #212121;
+  border-bottom: 1px solid #e0e0e0; padding-bottom: 6px;
+}
+.form-row { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 4px; }
+.form-field-sm { width: 90px; }
+.form-field-md { width: 200px; }
+.form-field-lg { width: 340px; }
+.action-buttons { display: flex; gap: 12px; margin-top: 32px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+.btn-next { background-color: #BE1E2D !important; color: white !important; padding: 0 32px !important; }

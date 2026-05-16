@@ -1,0 +1,24 @@
+.step-container { padding: 24px 32px; max-width: 760px; }
+.breadcrumb { font-size: 13px; color: #757575; margin-bottom: 12px; a { color: #1565C0; text-decoration: none; cursor: pointer; } span { margin: 0 2px; } }
+.section-title { font-size: 22px; font-weight: 400; margin: 0 0 20px; color: #212121; }
+.wide-select { width: 520px; display: block; margin-bottom: 12px; }
+.medium-select { width: 220px; display: block; margin-bottom: 8px; }
+.subsection-title { font-size: 16px; font-weight: 500; margin: 20px 0 10px; color: #212121; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px; }
+.product-subheading { font-size: 15px; font-weight: 500; color: #212121; margin: 16px 0 8px; }
+.sub-note { font-size: 14px; color: #616161; margin: 0 0 12px; }
+.form-divider { border: none; border-top: 1px solid #e0e0e0; margin: 20px 0; }
+.static-text { font-size: 13px; color: #424242; margin: 8px 0 16px; line-height: 1.6; }
+.starrx-note { font-size: 12px; color: #616161; font-style: italic; margin: 12px 0 16px; line-height: 1.5; }
+.vertical-radio { display: flex; flex-direction: column; gap: 10px; }
+.radio-option-block { display: flex; flex-direction: column; }
+.nested-content { padding-left: 28px; margin-top: 8px; }
+.inline-row { display: flex; align-items: center; gap: 10px; margin: 4px 0; font-size: 14px; flex-wrap: wrap; }
+.maintenance-row { margin-bottom: 12px; }
+.field-text { font-size: 14px; color: #424242; }
+.field-unit { font-size: 13px; color: #616161; }
+.small-field { width: 100px; }
+.full-width-field { width: 100%; }
+.instructions-field { width: 100%; }
+.action-buttons { display: flex; gap: 12px; margin-top: 32px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+.btn-next { background-color: #BE1E2D !important; color: white !important; padding: 0 32px !important; }
+.btn-back { border: 1px solid #9e9e9e !important; color: #424242 !important; }

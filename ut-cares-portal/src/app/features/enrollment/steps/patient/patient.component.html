@@ -1,0 +1,80 @@
+<div class="step-container">
+  <nav class="breadcrumb">
+    <a>Home</a><span> &gt; </span><span>Patient Information</span>
+  </nav>
+
+  <h2 class="section-title">Patient Information</h2>
+  <p class="section-subtitle">Enter the patient's demographic information below.</p>
+
+  <form [formGroup]="form" (ngSubmit)="onNext()">
+
+    <div class="subsection-title">Patient Demographics</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput formControlName="dateOfBirth" placeholder="MM/DD/YYYY">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>Sex</mat-label>
+        <mat-select formControlName="sex">
+          <mat-option *ngFor="let s of sexOptions" [value]="s">{{ s }}</mat-option>
+        </mat-select>
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="subsection-title">Contact & Address</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" placeholder="(XXX) XXX-XXXX">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-lg">
+        <mat-label>Address Line 1</mat-label>
+        <input matInput formControlName="addressLine1">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-lg">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field-sm">
+        <mat-label>State</mat-label>
+        <mat-select formControlName="state">
+          <mat-option *ngFor="let s of states" [value]="s">{{ s }}</mat-option>
+        </mat-select>
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field-sm">
+        <mat-label>ZIP</mat-label>
+        <input matInput formControlName="zip">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="action-buttons">
+      <button mat-stroked-button type="button" class="btn-back" (click)="onBack()">Back</button>
+      <button mat-flat-button type="submit" class="btn-next">Next</button>
+    </div>
+  </form>
+</div>

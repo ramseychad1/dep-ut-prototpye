@@ -1,0 +1,112 @@
+<div class="step-container">
+  <nav class="breadcrumb">
+    <a>Home</a><span> &gt; </span><span>Prescriber Information</span>
+  </nav>
+
+  <h2 class="section-title">Prescriber Information</h2>
+  <p class="section-subtitle">Enter the prescribing physician's information below.</p>
+
+  <form [formGroup]="form" (ngSubmit)="onNext()">
+
+    <div class="subsection-title">Prescriber Identification</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>NPI</mat-label>
+        <input matInput formControlName="npi" placeholder="10-digit NPI">
+        <mat-error *ngIf="form.get('npi')?.hasError('required')">NPI is required</mat-error>
+        <mat-error *ngIf="form.get('npi')?.hasError('pattern')">Must be 10 digits</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-lg">
+        <mat-label>Specialty</mat-label>
+        <mat-select formControlName="specialty">
+          <mat-option *ngFor="let s of specialties" [value]="s">{{ s }}</mat-option>
+        </mat-select>
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="subsection-title">Practice Information</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-lg">
+        <mat-label>Practice / Facility Name</mat-label>
+        <input matInput formControlName="practiceName">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" placeholder="(XXX) XXX-XXXX">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field-md">
+        <mat-label>Fax</mat-label>
+        <input matInput formControlName="fax" placeholder="(XXX) XXX-XXXX">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-lg">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email">
+        <mat-error *ngIf="form.get('email')?.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid email</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="subsection-title">Address</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-lg">
+        <mat-label>Address Line 1</mat-label>
+        <input matInput formControlName="addressLine1">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-lg">
+        <mat-label>Address Line 2 (optional)</mat-label>
+        <input matInput formControlName="addressLine2">
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field-lg">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field-sm">
+        <mat-label>State</mat-label>
+        <mat-select formControlName="state">
+          <mat-option *ngFor="let s of states" [value]="s">{{ s }}</mat-option>
+        </mat-select>
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field-sm">
+        <mat-label>ZIP</mat-label>
+        <input matInput formControlName="zip">
+        <mat-error>Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="action-buttons">
+      <button mat-flat-button type="submit" class="btn-next">Next</button>
+    </div>
+  </form>
+</div>

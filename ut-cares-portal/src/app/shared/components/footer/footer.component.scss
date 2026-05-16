@@ -1,0 +1,119 @@
+.app-footer {
+  background: #212529;
+  color: #adb5bd;
+  margin-top: auto;
+}
+
+.footer-inner {
+  display: flex;
+  gap: 32px;
+  padding: 32px 24px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo-col {
+  min-width: 160px;
+  border: 2px dashed #555;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.cardinal-logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cardinal-bird {
+  width: 32px;
+  height: 32px;
+  background: #BE1E2D;
+  clip-path: polygon(50% 0%, 0% 100%, 50% 75%, 100% 100%);
+  flex-shrink: 0;
+}
+
+.cardinal-text {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.1;
+
+  strong {
+    color: #BE1E2D;
+    font-weight: 700;
+  }
+}
+
+.footer-company-col {
+  flex: 2;
+}
+
+.footer-support-col {
+  flex: 1;
+  border-left: 1px solid #444;
+  padding-left: 24px;
+}
+
+.footer-heading {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  a {
+    color: #adb5bd;
+    text-decoration: none;
+    font-size: 13px;
+
+    &:hover { color: #fff; text-decoration: underline; }
+  }
+}
+
+.footer-disclaimer {
+  font-size: 11px;
+  color: #6c757d;
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
+.support-hours {
+  font-size: 13px;
+  color: #adb5bd;
+  margin: 0 0 8px;
+}
+
+.support-contact {
+  font-size: 13px;
+  color: #adb5bd;
+  line-height: 1.8;
+  margin: 0;
+
+  a {
+    color: #adb5bd;
+    text-decoration: none;
+    &:hover { color: #fff; }
+  }
+}
+
+.footer-copyright {
+  border-top: 1px solid #343a40;
+  padding: 12px 24px;
+  text-align: left;
+
+  p {
+    font-size: 11px;
+    color: #6c757d;
+    margin: 0;
+  }
+}

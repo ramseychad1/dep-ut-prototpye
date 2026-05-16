@@ -1,0 +1,171 @@
+<div class="step-container">
+  <nav class="breadcrumb">
+    <a>Home</a><span> &gt; </span><span>Prescription Details</span>
+  </nav>
+  <app-patient-banner></app-patient-banner>
+
+  <h2 class="section-title">Prescription Details for Tyvaso</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onNext()">
+
+    <!-- Indication -->
+    <mat-form-field appearance="outline" class="wide-select">
+      <mat-label>Indication</mat-label>
+      <mat-select formControlName="indication">
+        <mat-option *ngFor="let opt of indicationOptions" [value]="opt.value">{{ opt.label }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Product (shown after indication selected) -->
+    <ng-container *ngIf="indication">
+      <mat-form-field appearance="outline" class="wide-select">
+        <mat-label>Product</mat-label>
+        <mat-select formControlName="product">
+          <mat-option *ngFor="let p of productOptions" [value]="p.value">{{ p.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+
+    <!-- ===== INHALATION SOLUTION ===== -->
+    <ng-container *ngIf="isSolution">
+      <hr class="form-divider">
+      <p class="product-subheading">TYVASO (treprostinil) 1.74mg/2.9ml ampule (0.6mg/ml) Inhalation Solution</p>
+
+      <div class="subsection-title">Target Dose</div>
+      <mat-radio-group formControlName="targetDoseType" class="vertical-radio">
+        <div class="radio-option-block">
+          <mat-radio-button value="recommended">9 breaths (54 mcg) to 12 breaths (72 mcg), QID</mat-radio-button>
+        </div>
+        <div class="radio-option-block">
+          <mat-radio-button value="other">Other</mat-radio-button>
+          <div class="nested-content" *ngIf="isOtherDose">
+            <div class="inline-row">
+              <mat-form-field appearance="outline" class="small-field">
+                <mat-label>Dosage (mcg)</mat-label>
+                <input matInput formControlName="targetDosageMcg" placeholder="mcg">
+              </mat-form-field>
+              <span class="field-unit">mcg per treatment session, QID</span>
+            </div>
+          </div>
+        </div>
+      </mat-radio-group>
+
+      <p class="static-text">Start with 3 breaths (18 mcg) QID (if 3 breaths are not tolerated, use 1 to 2 breaths). Increase by an additional 1-3 breaths every week, as tolerated, until the maintenance dose is achieved.</p>
+
+      <div class="subsection-title">Choose Supply</div>
+      <mat-radio-group formControlName="refillKit" class="vertical-radio">
+        <div class="radio-option-block">
+          <mat-radio-button [value]="false">TYVASO Inhalation System Starter Kit (28-day supply) 0 refills</mat-radio-button>
+        </div>
+        <div class="radio-option-block">
+          <mat-radio-button [value]="true">TYVASO Inhalation System Refill Kit (28-day supply)</mat-radio-button>
+          <div class="nested-content" *ngIf="isRefillKitSelected">
+            <div class="inline-row">
+              <span class="field-text">28-day supply &times;</span>
+              <mat-form-field appearance="outline" class="small-field">
+                <input matInput formControlName="refillKitAmount" placeholder="0">
+              </mat-form-field>
+              <span class="field-unit">refills</span>
+            </div>
+          </div>
+        </div>
+      </mat-radio-group>
+
+      <p class="starrx-note">If your patient is eligible for the StarRx Program and new to inhaled prostacyclins please see the Terms and Conditions on page 6 for more information about available kits.</p>
+
+      <p class="sub-note">Specify any additional dosing, titration, and/or side effect management instructions.</p>
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Instructions</mat-label>
+        <textarea matInput formControlName="instructions" rows="4"></textarea>
+      </mat-form-field>
+    </ng-container>
+
+    <!-- ===== DPI POWDER ===== -->
+    <ng-container *ngIf="isPowder">
+      <hr class="form-divider">
+      <p class="product-subheading">TYVASO DPI (treprostinil) Inhalation Powder</p>
+
+      <div class="subsection-title">Target Dose</div>
+      <mat-form-field appearance="outline" class="medium-select">
+        <mat-label>Target Dose</mat-label>
+        <mat-select formControlName="dpiTargetDose">
+          <mat-option *ngFor="let d of dpiTargetDoseOptions" [value]="d.value">{{ d.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="inline-row" *ngIf="isDpiOtherDose">
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>Dosage (mcg)</mat-label>
+          <input matInput formControlName="dpiOtherDosageMcg" placeholder="mcg">
+        </mat-form-field>
+        <span class="field-unit">mcg per treatment session, QID</span>
+      </div>
+
+      <p class="static-text">Start by taking one breath, per cartridge, (16mcg), QID. Increase cartridge strength by 16 mcg every 1-2 weeks as tolerated to reach maintenance dose. Titration schedule may vary based on tolerability. If the prescribed dose is higher than 80 mcg per treatment session, more than 1 cartridge will be needed per session.</p>
+
+      <div class="subsection-title">TYVASO DPI Titration Kit (28-day supply) &mdash; Choose for titration phase.</div>
+      <mat-radio-group formControlName="dpiTitrationKit" class="vertical-radio">
+        <mat-radio-button [value]="true">16 mcg (112 ct), 32 mcg (112 ct), and 48 mcg (28 ct) 1 refill</mat-radio-button>
+      </mat-radio-group>
+
+      <div class="subsection-title">TYVASO DPI Maintenance Kit</div>
+      <div class="inline-row maintenance-row">
+        <span class="field-text">28-day supply &times;</span>
+        <mat-form-field appearance="outline" class="small-field">
+          <input matInput formControlName="dpiMaintenanceRefills" placeholder="0">
+        </mat-form-field>
+        <span class="field-unit">refills</span>
+      </div>
+      <p class="sub-note">Select all that apply to achieve maintenance dose.</p>
+      <mat-form-field appearance="outline" class="wide-select">
+        <mat-label>Select Amounts</mat-label>
+        <mat-select formControlName="dpiMaintenanceAmounts">
+          <mat-option *ngFor="let a of maintenanceAmountOptions" [value]="a">{{ a }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <p class="starrx-note">If your patient is eligible for the StarRx Program and new to inhaled prostacyclins please see the Terms and Conditions on page 6 for more information about available kits.</p>
+
+      <p class="sub-note">Specify any additional dosing, titration, and/or side effect management instructions.</p>
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Instructions</mat-label>
+        <textarea matInput formControlName="instructions" rows="4"></textarea>
+      </mat-form-field>
+    </ng-container>
+
+    <!-- ===== NURSING VISIT ORDERS (both products) ===== -->
+    <ng-container *ngIf="isSolution || isPowder">
+      <hr class="form-divider">
+      <div class="subsection-title">Nursing visit orders</div>
+      <p class="sub-note">RN to provide assessment and education on administration, dosing, titration, and side effect management.</p>
+
+      <mat-radio-group formControlName="nursingVisitType" class="vertical-radio">
+        <div class="radio-option-block">
+          <mat-radio-button value="specialty-pharmacy">Specialty Pharmacy Home Healthcare RN visit</mat-radio-button>
+        </div>
+        <div class="radio-option-block">
+          <mat-radio-button value="prescriber-directed">Prescriber-directed Specialty Pharmacy RN visit as detailed:</mat-radio-button>
+          <div class="nested-content" *ngIf="isPrescriber">
+            <mat-form-field appearance="outline" class="instructions-field">
+              <mat-label>Instructions</mat-label>
+              <textarea matInput formControlName="nursingInstructions" rows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-radio-group>
+
+      <hr class="form-divider">
+      <div class="subsection-title">Location</div>
+      <mat-radio-group formControlName="location" class="vertical-radio">
+        <mat-radio-button value="home">Home</mat-radio-button>
+        <mat-radio-button value="outpatient">Outpatient Clinic</mat-radio-button>
+        <mat-radio-button value="hospital">Hospital</mat-radio-button>
+      </mat-radio-group>
+    </ng-container>
+
+    <div class="action-buttons">
+      <button mat-stroked-button type="button" class="btn-back" (click)="onBack()">Back</button>
+      <button mat-flat-button type="submit" class="btn-next">Next</button>
+    </div>
+  </form>
+</div>

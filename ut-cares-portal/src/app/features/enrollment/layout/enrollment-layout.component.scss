@@ -1,0 +1,17 @@
+.enrollment-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.enrollment-body {
+  display: flex;
+  flex: 1;
+}
+
+.enrollment-main {
+  flex: 1;
+  padding: 0;
+  background: #fff;
+  overflow-y: auto;
+}

@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Angular
+ut-cares-portal/node_modules/
+ut-cares-portal/dist/
+
+# Logs
+*.log
+npm-debug.log*

@@ -1,0 +1,36 @@
+.step-container { padding: 24px 32px; max-width: 760px; }
+.breadcrumb { font-size: 13px; color: #757575; margin-bottom: 12px; a { color: #1565C0; text-decoration: none; cursor: pointer; } span { margin: 0 2px; } }
+.section-title { font-size: 22px; font-weight: 400; margin: 0 0 20px; color: #212121; }
+.subsection-title { font-size: 16px; font-weight: 500; margin: 20px 0 10px; color: #212121; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px; }
+.sub-note { font-size: 14px; color: #616161; margin: 0 0 12px; }
+.form-divider { border: none; border-top: 1px solid #e0e0e0; margin: 20px 0; }
+.field-text { font-size: 14px; color: #424242; }
+.field-label { font-size: 14px; color: #424242; min-width: 120px; }
+.field-label-top { font-size: 14px; font-weight: 500; color: #424242; margin: 0 0 8px; }
+.field-unit { font-size: 13px; color: #616161; }
+.dosing-label { font-size: 14px; color: #424242; min-width: 160px; }
+.quantity-row, .weight-row, .dosing-row {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.weight-unit-group { display: flex; gap: 12px; mat-radio-button { margin-right: 8px; } }
+.field-section { margin-bottom: 16px; }
+.vertical-radio { display: flex; flex-direction: column; gap: 8px; }
+.small-field { width: 100px; }
+.tiny-field { width: 70px; }
+.unit-field { width: 140px; }
+.full-width-field { width: 100%; }
+.instructions-field { width: 100%; }
+.legal-note { font-size: 12px; color: #616161; font-style: italic; margin: 4px 0 16px; line-height: 1.5; }
+.checkbox-item { margin-bottom: 8px; }
+.unit-display-box {
+  display: flex; flex-direction: column; align-items: center;
+  border: 1px solid #e0e0e0; border-radius: 4px; padding: 4px 8px;
+  font-size: 12px; color: #616161; gap: 2px; min-width: 40px;
+}
+.radio-option-block { margin-bottom: 12px; }
+.nested-content { padding-left: 28px; margin-top: 8px; }
+.nested-label { font-size: 13px; color: #424242; margin: 0 0 8px; }
+.dressing-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.action-buttons { display: flex; gap: 12px; margin-top: 32px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+.btn-next { background-color: #BE1E2D !important; color: white !important; padding: 0 32px !important; }
+.btn-back { border: 1px solid #9e9e9e !important; color: #424242 !important; }

@@ -1,0 +1,190 @@
+<div class="step-container">
+  <nav class="breadcrumb">
+    <a>Home</a><span> &gt; </span><span>Prescription Details</span>
+  </nav>
+  <app-patient-banner></app-patient-banner>
+
+  <h2 class="section-title">Prescription Details for Orenitram</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onNext()">
+
+    <!-- Prescription Type Selection -->
+    <mat-form-field appearance="outline" class="prescription-select">
+      <mat-label>Select Prescription</mat-label>
+      <mat-select formControlName="prescriptionType">
+        <mat-option *ngFor="let opt of prescriptionOptions" [value]="opt.value">{{ opt.label }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- ===== THERAPY INITIATION ===== -->
+    <ng-container *ngIf="isTherapy">
+      <div class="subsection-title">Therapy initiation and prescription beyond month 3</div>
+
+      <!-- Titration Kit -->
+      <div class="checkbox-item">
+        <mat-checkbox formControlName="titrationKit">
+          Titration Kit (3-month supply) 0 refills
+        </mat-checkbox>
+      </div>
+      <div class="indented-content" *ngIf="showTitrationKitDetails">
+        <p>Titration Kit directions: Initiate at 0.125 mg TID. Titrate by 0.125 mg TID every 7 days until a dose of 1.5 mg TID is achieved by end of titration pack month 3.</p>
+        <ul>
+          <li>Month 1 (NDC 66302-361-28), 126 tablets of 0.125 mg and 42 tablets of 0.25 mg</li>
+          <li>Month 2 (NDC 66302-362-56), 126 tablets of 0.125 mg and 210 tablets of 0.25 mg</li>
+          <li>Month 3 (NDC 66302-363-84), 126 tablets of 0.125 mg, 42 tablets of 0.25 mg, and 84 tablets of 1 mg</li>
+        </ul>
+      </div>
+
+      <!-- Prescription beyond month 3 -->
+      <div class="checkbox-item">
+        <mat-checkbox formControlName="prescriptionBeyondMonth3">
+          Prescription beyond month 3
+        </mat-checkbox>
+      </div>
+      <div class="beyond-month3-fields" *ngIf="showBeyondMonth3Fields">
+        <div class="inline-fields-row">
+          <span class="field-label">Titrate by</span>
+          <mat-form-field appearance="outline" class="small-field">
+            <input matInput formControlName="titrateByAmount" placeholder="Amount">
+          </mat-form-field>
+          <span class="field-unit">mg</span>
+
+          <span class="field-label field-label-gap">Every</span>
+          <mat-form-field appearance="outline" class="small-field">
+            <input matInput formControlName="titrateEveryDays" placeholder="Interval">
+          </mat-form-field>
+          <span class="field-unit">days</span>
+
+          <span class="field-label field-label-gap">Until goal of</span>
+          <mat-form-field appearance="outline" class="small-field">
+            <input matInput formControlName="untilGoalDose" placeholder="Target Dose">
+          </mat-form-field>
+          <span class="field-unit">mg TID is achieved</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- ===== ALTERNATE DOSING ===== -->
+    <ng-container *ngIf="isAlternate">
+      <div class="subsection-title">Alternate dosing instructions</div>
+
+      <div class="alternate-fields">
+        <div class="inline-fields-row">
+          <span class="field-label">Initiate at</span>
+          <mat-form-field appearance="outline" class="small-field">
+            <input matInput formControlName="initiateAtAmount" placeholder="Amount">
+          </mat-form-field>
+          <span class="field-unit">mg</span>
+          <div class="tid-bid-group">
+            <mat-radio-group formControlName="initiateFrequency" class="tid-bid-radio">
+              <mat-radio-button value="TID">TID</mat-radio-button>
+              <mat-radio-button value="BID">BID</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="inline-fields-row">
+          <span class="field-label">Titrate by</span>
+          <mat-form-field appearance="outline" class="small-field">
+            <input matInput formControlName="alternatetitrateAmount" placeholder="Amount">
+          </mat-form-field>
+          <span class="field-unit">mg</span>
+        </div>
+
+        <div class="inline-fields-row">
+          <span class="field-label">Every</span>
+          <mat-form-field appearance="outline" class="small-field">
+            <input matInput formControlName="alternateEveryDays" placeholder="Interval">
+          </mat-form-field>
+          <span class="field-unit">days</span>
+        </div>
+
+        <div class="inline-fields-row">
+          <span class="field-label">Until goal of</span>
+          <mat-form-field appearance="outline" class="small-field">
+            <input matInput formControlName="alternateGoalDose" placeholder="Target Dose">
+          </mat-form-field>
+          <span class="field-unit">mg TID is achieved</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- ===== STRENGTHS (shown for both) ===== -->
+    <ng-container *ngIf="isTherapy || isAlternate">
+      <hr class="form-divider">
+      <div class="subsection-title">Strengths</div>
+      <p class="sub-note">Select all appropriate strengths needed to reach target dose:</p>
+
+      <div class="strength-list">
+        <div class="strength-item"><mat-checkbox formControlName="strength0125">0.125 mg (NDC 66302-300-01)</mat-checkbox></div>
+        <div class="strength-item"><mat-checkbox formControlName="strength025">0.25 mg (NDC 66302-302-01)</mat-checkbox></div>
+        <div class="strength-item"><mat-checkbox formControlName="strength1">1 mg (NDC 66302-310-01)</mat-checkbox></div>
+        <div class="strength-item"><mat-checkbox formControlName="strength25">2.5 mg (NDC 66302-325-01)</mat-checkbox></div>
+        <div class="strength-item"><mat-checkbox formControlName="strength5">5 mg (NDC 66302-350-01)</mat-checkbox></div>
+      </div>
+
+      <!-- Instructions -->
+      <hr class="form-divider">
+      <div class="subsection-title">Instructions</div>
+      <p class="sub-note">Specify any additional dosing, titration, and/or side effect management instructions.</p>
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Instructions</mat-label>
+        <textarea matInput formControlName="instructions" rows="4"></textarea>
+      </mat-form-field>
+
+      <!-- Dispense -->
+      <hr class="form-divider">
+      <div class="subsection-title">Dispense</div>
+      <p class="sub-note">Quantity sufficient for up to maximum allowable dose for one (1) month's supply:</p>
+
+      <mat-radio-group formControlName="dispenseType" class="dispense-radio-group">
+        <div class="radio-item">
+          <mat-radio-button value="12months">12 months refills</mat-radio-button>
+        </div>
+        <div class="radio-item">
+          <mat-radio-button value="specify">Specify amount</mat-radio-button>
+        </div>
+      </mat-radio-group>
+
+      <div class="specify-refills" *ngIf="showSpecifyRefills">
+        <span class="field-label">Refills</span>
+        <mat-form-field appearance="outline" class="refill-field">
+          <input matInput formControlName="refillsCount" placeholder="0">
+        </mat-form-field>
+        <span class="field-unit">time(s) refills</span>
+      </div>
+
+      <p class="directions-note"><strong>Directions:</strong> Take tablets by mouth with food</p>
+      <p class="legal-note">Specialty Pharmacy to contact Prescriber for adjustments to written orders specified above. The Prescriber is to comply with his/her state-specific prescription requirements, such as e-prescribing, state-specific prescription form, fax language, etc. Noncompliance with state-specific requirements could result in outreach to the Prescriber.</p>
+
+      <!-- In-home nurse education -->
+      <hr class="form-divider">
+      <div class="subsection-title">In-home nurse education</div>
+
+      <mat-radio-group formControlName="nurseEduType" class="nurse-edu-group">
+        <div class="nurse-option">
+          <mat-radio-button value="specialty-pharmacy">
+            Specialty Pharmacy home healthcare RN visit(s) to provide education on self-administration of Orenitram to include dose, titration, and side effect management
+          </mat-radio-button>
+        </div>
+        <div class="nurse-option">
+          <mat-radio-button value="prescriber-directed">
+            Prescriber-directed Specialty Pharmacy home healthcare RN visit(s) as detailed:
+          </mat-radio-button>
+          <div class="nurse-instructions" *ngIf="showNurseInstructions">
+            <mat-form-field appearance="outline" class="instructions-field">
+              <mat-label>Instructions</mat-label>
+              <input matInput formControlName="nurseInstructions">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-radio-group>
+    </ng-container>
+
+    <!-- Action buttons -->
+    <div class="action-buttons">
+      <button mat-stroked-button type="button" class="btn-back" (click)="onBack()">Back</button>
+      <button mat-flat-button type="submit" class="btn-next">Next</button>
+    </div>
+  </form>
+</div>

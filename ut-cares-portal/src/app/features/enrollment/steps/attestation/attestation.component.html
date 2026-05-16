@@ -1,0 +1,86 @@
+<div class="step-container">
+  <nav class="breadcrumb">
+    <a>Home</a><span> &gt; </span><span>Attestation</span>
+  </nav>
+  <app-patient-banner></app-patient-banner>
+
+  <!-- Success state -->
+  <div class="success-state" *ngIf="submitted()">
+    <mat-icon class="success-icon">check_circle</mat-icon>
+    <h2 class="success-title">Enrollment Submitted Successfully</h2>
+    <p class="success-message">
+      Thank you, {{ prescriber.firstName }} {{ prescriber.lastName }}. Your enrollment request has been submitted.
+      Our specialty pharmacy team will contact you within 1-2 business days to confirm the enrollment and next steps.
+    </p>
+    <p class="success-ref">Reference Number: <strong>{{ refNumber }}</strong></p>
+    <button mat-flat-button class="btn-new" (click)="startNew()">Start New Enrollment</button>
+  </div>
+
+  <!-- Attestation form -->
+  <ng-container *ngIf="!submitted()">
+    <h2 class="section-title">Attestation</h2>
+    <p class="section-subtitle">Please read and agree to the following statements to complete the enrollment.</p>
+
+    <div class="attestation-box">
+      <h3 class="attest-heading">Prescriber Attestation</h3>
+
+      <div class="attest-item">
+        <mat-checkbox [checked]="attestation1()" (change)="attestation1.set($event.checked)">
+          <span class="attest-text">
+            I certify that I am a licensed healthcare professional authorized to prescribe the selected medication(s).
+            The information provided in this enrollment form is accurate and complete to the best of my knowledge.
+          </span>
+        </mat-checkbox>
+      </div>
+
+      <div class="attest-item">
+        <mat-checkbox [checked]="attestation2()" (change)="attestation2.set($event.checked)">
+          <span class="attest-text">
+            I have obtained appropriate patient consent for enrollment in this specialty pharmacy program and for
+            sharing the patient's protected health information as required to facilitate dispensing and care coordination.
+          </span>
+        </mat-checkbox>
+      </div>
+
+      <div class="attest-item">
+        <mat-checkbox [checked]="attestation3()" (change)="attestation3.set($event.checked)">
+          <span class="attest-text">
+            I understand that the Specialty Pharmacy may contact me or my office to confirm or clarify prescription
+            information, and I agree to comply with all applicable state-specific prescribing requirements including
+            e-prescribing rules, prescription form requirements, and fax regulations.
+          </span>
+        </mat-checkbox>
+      </div>
+    </div>
+
+    <div class="prescriber-sig">
+      <p class="sig-label">Prescriber:</p>
+      <p class="sig-value">{{ prescriber.firstName }} {{ prescriber.lastName }}, NPI: {{ prescriber.npi }}</p>
+      <p class="sig-label">Practice:</p>
+      <p class="sig-value">{{ prescriber.practiceName }}</p>
+      <p class="sig-date">Date: {{ today }}</p>
+    </div>
+
+    <!-- Mock reCAPTCHA -->
+    <div class="recaptcha-mock">
+      <div class="recaptcha-box" [class.verified]="recaptchaChecked()" (click)="!recaptchaChecked() && mockRecaptcha()">
+        <div class="recaptcha-check">
+          <mat-icon *ngIf="recaptchaChecked()" class="check-mark">check</mat-icon>
+          <div class="recaptcha-checkbox" *ngIf="!recaptchaChecked()"></div>
+        </div>
+        <span class="recaptcha-label">I'm not a robot</span>
+        <div class="recaptcha-logo">
+          <div class="recaptcha-icon">reCAPTCHA</div>
+          <div class="recaptcha-sub">Privacy - Terms</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button mat-stroked-button type="button" class="btn-back" (click)="onBack()">Back</button>
+      <button mat-flat-button type="button" class="btn-submit" [disabled]="!allAttested" (click)="onSubmit()">
+        Submit Enrollment
+      </button>
+    </div>
+  </ng-container>
+</div>

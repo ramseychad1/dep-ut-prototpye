@@ -1,0 +1,10 @@
+<div class="enrollment-shell">
+  <app-header></app-header>
+  <div class="enrollment-body">
+    <app-progress-nav [activeStep]="activeStep" [activeSubStep]="activeSubStep"></app-progress-nav>
+    <main class="enrollment-main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  <app-footer></app-footer>
+</div>

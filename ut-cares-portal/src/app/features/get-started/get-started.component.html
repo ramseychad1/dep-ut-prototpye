@@ -1,0 +1,99 @@
+<div class="gs-shell">
+  <app-header></app-header>
+
+  <main class="gs-main">
+    <div class="gs-content">
+
+      <div class="gs-hero">
+        <h1 class="gs-title">Provider Enrollment</h1>
+        <p class="gs-subtitle">
+          Enroll your patient in Sonxtra Support™ quickly and securely. The process takes just a few minutes.
+        </p>
+      </div>
+
+      <div class="gs-body">
+
+        <div class="gs-info">
+          <h2 class="info-heading">Before you begin, have the following ready:</h2>
+          <ul class="info-list">
+            <li>
+              <mat-icon class="list-icon">person</mat-icon>
+              <span><strong>Prescriber Information</strong> — NPI, practice name, address, and contact details</span>
+            </li>
+            <li>
+              <mat-icon class="list-icon">people</mat-icon>
+              <span><strong>Patient Information</strong> — Name, date of birth, address, and insurance details</span>
+            </li>
+            <li>
+              <mat-icon class="list-icon">medication</mat-icon>
+              <span><strong>Prescription Details</strong> — Product, dosing, titration, and supply information</span>
+            </li>
+          </ul>
+
+          <h2 class="info-heading steps-heading">Enrollment Steps</h2>
+          <ol class="steps-list">
+            <li>
+              <span class="step-num">1</span>
+              <div>
+                <div class="step-label">Prescriber Information</div>
+                <div class="step-desc">Enter your NPI, specialty, practice, and contact information.</div>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <div>
+                <div class="step-label">Patient Information</div>
+                <div class="step-desc">Enter the patient's demographics, address, and insurance.</div>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <div>
+                <div class="step-label">Product Selection</div>
+                <div class="step-desc">Select Orenitram®, Remodulin®, or TYVASO® for this enrollment.</div>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">4</span>
+              <div>
+                <div class="step-label">Prescription Details</div>
+                <div class="step-desc">Specify dosing, titration schedule, nursing education, and supply.</div>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">5</span>
+              <div>
+                <div class="step-label">Review &amp; Attest</div>
+                <div class="step-desc">Review all information, sign the attestation, and submit.</div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="gs-aside">
+          <div class="action-card">
+            <mat-icon class="action-icon">assignment</mat-icon>
+            <h3 class="action-title">Start a New Enrollment</h3>
+            <p class="action-desc">
+              Complete a new Patient enrollment request for Orenitram®, Remodulin®, or TYVASO® through the Sonxtra Support™ program.
+            </p>
+            <button mat-flat-button class="btn-begin" (click)="beginEnrollment()">Begin Enrollment</button>
+          </div>
+
+          <div class="contact-card">
+            <h4 class="contact-heading">Need Help?</h4>
+            <p class="contact-info">
+              <strong>Phone:</strong> (888) 555-1234<br>
+              <strong>Fax:</strong> (888) 555-1111<br>
+              <strong>Email:</strong> help&#64;email.com
+            </p>
+            <p class="contact-hours">Monday–Friday, 8 AM – 8 PM ET</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

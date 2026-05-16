@@ -1,0 +1,91 @@
+<nav class="progress-nav">
+  <!-- Prescriber -->
+  <div class="nav-step"
+       [class.active]="isActive('prescriber')"
+       [class.completed]="isCompleted('prescriber')"
+       (click)="navigateTo('/enrollment/prescriber', 'prescriber')">
+    <span class="step-icon-wrap">
+      <mat-icon class="check-icon" *ngIf="isCompleted('prescriber')">check_circle</mat-icon>
+      <mat-icon class="pending-icon" *ngIf="!isCompleted('prescriber') && !isActive('prescriber')">radio_button_unchecked</mat-icon>
+      <mat-icon class="active-icon" *ngIf="isActive('prescriber') && !isCompleted('prescriber')">adjust</mat-icon>
+    </span>
+    <span class="step-label">Prescriber</span>
+  </div>
+
+  <!-- Patient -->
+  <div class="nav-step"
+       [class.active]="isActive('patient')"
+       [class.completed]="isCompleted('patient')"
+       (click)="navigateTo('/enrollment/patient', 'patient')">
+    <span class="step-icon-wrap">
+      <mat-icon class="check-icon" *ngIf="isCompleted('patient')">check_circle</mat-icon>
+      <mat-icon class="pending-icon" *ngIf="!isCompleted('patient') && !isActive('patient')">radio_button_unchecked</mat-icon>
+      <mat-icon class="active-icon" *ngIf="isActive('patient') && !isCompleted('patient')">adjust</mat-icon>
+    </span>
+    <span class="step-label">Patient</span>
+  </div>
+
+  <!-- Product (parent step) -->
+  <div class="nav-step"
+       [class.active]="isActive('product') || isActive('prescription')"
+       [class.completed]="isCompleted('product-details') && isCompleted('prescription-details')">
+    <span class="step-icon-wrap">
+      <mat-icon class="check-icon" *ngIf="isCompleted('product-details') && isCompleted('prescription-details')">check_circle</mat-icon>
+      <mat-icon class="active-icon" *ngIf="isActive('product') || isActive('prescription')">sync</mat-icon>
+      <mat-icon class="pending-icon" *ngIf="!isActive('product') && !isActive('prescription') && !(isCompleted('product-details') && isCompleted('prescription-details'))">radio_button_unchecked</mat-icon>
+    </span>
+    <span class="step-label">Product</span>
+  </div>
+
+  <!-- Sub-step: Product Details -->
+  <div class="nav-substep"
+       [class.active]="isActive('product')"
+       [class.completed]="isCompleted('product-details')"
+       (click)="navigateTo('/enrollment/product-details', 'product-details')">
+    <span class="substep-icon-wrap">
+      <mat-icon class="check-icon" *ngIf="isCompleted('product-details')">check_circle</mat-icon>
+      <mat-icon class="active-icon" *ngIf="isActive('product') && !isCompleted('product-details')">adjust</mat-icon>
+      <mat-icon class="pending-icon" *ngIf="!isActive('product') && !isCompleted('product-details')">radio_button_unchecked</mat-icon>
+    </span>
+    <span class="substep-label">Product Details</span>
+  </div>
+
+  <!-- Sub-step: Prescription Details -->
+  <div class="nav-substep"
+       [class.active]="isActive('prescription')"
+       [class.completed]="isCompleted('prescription-details')"
+       (click)="navigateTo('/enrollment/prescription-details', 'prescription-details')">
+    <span class="substep-icon-wrap">
+      <mat-icon class="check-icon" *ngIf="isCompleted('prescription-details')">check_circle</mat-icon>
+      <mat-icon class="active-icon" *ngIf="isActive('prescription') && !isCompleted('prescription-details')">adjust</mat-icon>
+      <mat-icon class="pending-icon" *ngIf="!isActive('prescription') && !isCompleted('prescription-details')">radio_button_unchecked</mat-icon>
+    </span>
+    <span class="substep-label">{{ prescriptionSubStepLabel }}</span>
+  </div>
+
+  <!-- Review -->
+  <div class="nav-step"
+       [class.active]="isActive('review')"
+       [class.completed]="isCompleted('review')"
+       (click)="navigateTo('/enrollment/review', 'review')">
+    <span class="step-icon-wrap">
+      <mat-icon class="check-icon" *ngIf="isCompleted('review')">check_circle</mat-icon>
+      <mat-icon class="pending-icon" *ngIf="!isCompleted('review') && !isActive('review')">radio_button_unchecked</mat-icon>
+      <mat-icon class="active-icon" *ngIf="isActive('review') && !isCompleted('review')">adjust</mat-icon>
+    </span>
+    <span class="step-label">Review</span>
+  </div>
+
+  <!-- Attestation -->
+  <div class="nav-step"
+       [class.active]="isActive('attestation')"
+       [class.completed]="isCompleted('attestation')"
+       (click)="navigateTo('/enrollment/attestation', 'attestation')">
+    <span class="step-icon-wrap">
+      <mat-icon class="check-icon" *ngIf="isCompleted('attestation')">check_circle</mat-icon>
+      <mat-icon class="pending-icon" *ngIf="!isCompleted('attestation') && !isActive('attestation')">radio_button_unchecked</mat-icon>
+      <mat-icon class="active-icon" *ngIf="isActive('attestation') && !isCompleted('attestation')">adjust</mat-icon>
+    </span>
+    <span class="step-label">Attestation</span>
+  </div>
+</nav>

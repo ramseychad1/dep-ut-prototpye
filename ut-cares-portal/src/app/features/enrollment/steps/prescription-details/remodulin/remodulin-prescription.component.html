@@ -1,0 +1,177 @@
+<div class="step-container">
+  <nav class="breadcrumb">
+    <a>Home</a><span> &gt; </span><span>Prescription Details</span>
+  </nav>
+  <app-patient-banner></app-patient-banner>
+
+  <h2 class="section-title">Prescription Details for Remodulin</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onNext()">
+
+    <!-- Infusion Details -->
+    <div class="subsection-title">Infusion Details</div>
+
+    <div class="quantity-row">
+      <span class="field-text">Quantity: Dispense 1 month of drug and supplies ×</span>
+      <mat-form-field appearance="outline" class="small-field">
+        <input matInput formControlName="refills" placeholder="0">
+      </mat-form-field>
+      <span class="field-text">time(s) refills</span>
+    </div>
+
+    <div class="weight-row">
+      <span class="field-label">Dosing Weight</span>
+      <mat-form-field appearance="outline" class="small-field">
+        <input matInput formControlName="dosingWeight" placeholder="Weight">
+      </mat-form-field>
+      <mat-radio-group formControlName="dosingWeightUnit" class="weight-unit-group">
+        <mat-radio-button value="kg">kg</mat-radio-button>
+        <mat-radio-button value="lb">lb</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="field-section">
+      <p class="field-label-top">Infusion type:</p>
+      <mat-radio-group formControlName="infusionType" class="vertical-radio">
+        <mat-radio-button value="subcutaneous">Subcutaneous continuous infusion</mat-radio-button>
+        <mat-radio-button value="intravenous">Intravenous continuous infusion</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="field-section">
+      <p class="field-label-top">Check one:</p>
+      <mat-radio-group formControlName="diluent" class="vertical-radio">
+        <mat-radio-button value="sodium-chloride">0.9% Sodium Chloride (Default)</mat-radio-button>
+        <mat-radio-button value="remodulin-sterile">Remodulin Sterile Diluent for injection</mat-radio-button>
+        <mat-radio-button value="epoprostenol-sterile">Epoprostenol Sterile Diluent for injection</mat-radio-button>
+        <mat-radio-button value="sterile-water">Sterile Water for injection</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="field-section">
+      <p class="field-label-top">Pumps</p>
+      <div class="checkbox-item"><mat-checkbox formControlName="pumpAmbulatory">Ambulatory IV Infusion Pump (2)</mat-checkbox></div>
+      <div class="checkbox-item"><mat-checkbox formControlName="pumpRemunity">RemunityPRO™ Pump for Remodulin (Remunity Pumps (2), Remotes, Batteries + Chargers)</mat-checkbox></div>
+    </div>
+
+    <!-- Vial Concentrations -->
+    <hr class="form-divider">
+    <div class="subsection-title">Vial concentrations</div>
+    <p class="sub-note">Select all appropriate concentrations needed to reach target dose:</p>
+    <div class="checkbox-item"><mat-checkbox formControlName="vial04">0.4 mg/mL (20 mL vial)</mat-checkbox></div>
+    <div class="checkbox-item"><mat-checkbox formControlName="vial1">1 mg/mL (20 mL vial)</mat-checkbox></div>
+    <div class="checkbox-item"><mat-checkbox formControlName="vial25">2.5 mg/mL (20 mL vial)</mat-checkbox></div>
+    <div class="checkbox-item"><mat-checkbox formControlName="vial5">5 mg/mL (20 mL vial)</mat-checkbox></div>
+    <div class="checkbox-item"><mat-checkbox formControlName="vial10">10 mg/mL (20 mL vial)</mat-checkbox></div>
+
+    <!-- Dosing and Titration -->
+    <hr class="form-divider">
+    <div class="subsection-title">Dosing and titration instructions</div>
+
+    <div class="dosing-row">
+      <span class="dosing-label">Initiation dosage:</span>
+      <mat-form-field appearance="outline" class="small-field">
+        <input matInput formControlName="initiationDosageAmount" placeholder="Amount">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="unit-field">
+        <mat-select formControlName="initiationDosageUnit">
+          <mat-option *ngFor="let u of doseUnits" [value]="u">{{ u }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="unit-display-box">
+        <span>ng</span>
+        <span>kg</span>
+        <span>min</span>
+      </div>
+    </div>
+
+    <div class="dosing-row">
+      <span class="dosing-label">Titrate:</span>
+      <mat-form-field appearance="outline" class="small-field">
+        <input matInput formControlName="titrateAmount" placeholder="Amount">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="unit-field">
+        <mat-select formControlName="titrateUnit">
+          <mat-option *ngFor="let u of doseUnits" [value]="u">{{ u }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="dosing-row">
+      <span class="dosing-label">Every:</span>
+      <mat-form-field appearance="outline" class="small-field">
+        <input matInput formControlName="titrateEveryDays" placeholder="Amount">
+      </mat-form-field>
+      <span class="field-unit">days or at nearest cassette change</span>
+    </div>
+
+    <div class="dosing-row">
+      <span class="dosing-label">Until a goal dose of:</span>
+      <mat-form-field appearance="outline" class="small-field">
+        <input matInput formControlName="goalDoseAmount" placeholder="Amount">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="unit-field">
+        <mat-select formControlName="goalDoseUnit">
+          <mat-option *ngFor="let u of doseUnits" [value]="u">{{ u }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span class="field-unit">is achieved</span>
+    </div>
+
+    <p class="sub-note">Specify any additional dosing, titration, and/or side effect management instructions.</p>
+    <mat-form-field appearance="outline" class="full-width-field">
+      <mat-label>Instructions</mat-label>
+      <textarea matInput formControlName="instructions" rows="4"></textarea>
+    </mat-form-field>
+
+    <p class="legal-note">Specialty Pharmacy to contact prescribing practitioner for adjustments to the written orders specified above. Dose changes requiring a new vial strength may be required to be on the next weekly shipment.</p>
+
+    <!-- Nursing Visit Orders -->
+    <hr class="form-divider">
+    <div class="subsection-title">Nursing visit orders</div>
+    <p class="sub-note">RN to provide assessment and education on administration, dosing, titration, and side effect management.</p>
+
+    <mat-radio-group formControlName="nursingVisitType" class="vertical-radio">
+      <div class="radio-option-block">
+        <mat-radio-button value="iv">For IV infusions</mat-radio-button>
+        <div class="nested-content" *ngIf="isIV">
+          <p class="nested-label">Central venous catheter care:</p>
+          <div class="dressing-row">
+            <mat-checkbox formControlName="ivPerStandard">Per IV standard of care</mat-checkbox>
+          </div>
+          <div class="dressing-row">
+            <mat-checkbox>Dressing change every</mat-checkbox>
+            <mat-form-field appearance="outline" class="tiny-field">
+              <input matInput formControlName="ivDressingChangeDays" placeholder="Days">
+            </mat-form-field>
+            <span class="field-unit">days</span>
+          </div>
+        </div>
+      </div>
+      <div class="radio-option-block">
+        <mat-radio-button value="subq">For SubQ infusions</mat-radio-button>
+        <div class="nested-content" *ngIf="isSubQ">
+          <p class="nested-label">Prescriber-directed Specialty Pharmacy home healthcare RN visit(s) as detailed:</p>
+          <mat-form-field appearance="outline" class="instructions-field">
+            <mat-label>Instructions</mat-label>
+            <textarea matInput formControlName="subqInstructions" rows="3"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-radio-group>
+
+    <!-- Location -->
+    <hr class="form-divider">
+    <div class="subsection-title">Location</div>
+    <mat-radio-group formControlName="location" class="vertical-radio">
+      <mat-radio-button value="home">Home</mat-radio-button>
+      <mat-radio-button value="outpatient">Outpatient Clinic</mat-radio-button>
+      <mat-radio-button value="hospital">Hospital</mat-radio-button>
+    </mat-radio-group>
+
+    <div class="action-buttons">
+      <button mat-stroked-button type="button" class="btn-back" (click)="onBack()">Back</button>
+      <button mat-flat-button type="submit" class="btn-next">Next</button>
+    </div>
+  </form>
+</div>

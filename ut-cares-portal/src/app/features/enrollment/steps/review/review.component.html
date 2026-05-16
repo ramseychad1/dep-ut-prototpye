@@ -1,0 +1,204 @@
+<div class="step-container">
+  <nav class="breadcrumb">
+    <a>Home</a><span> &gt; </span><span>Review</span>
+  </nav>
+  <app-patient-banner></app-patient-banner>
+
+  <h2 class="section-title">Review</h2>
+  <p class="section-subtitle">Please review all information below before submitting. Click <strong>Edit</strong> to make changes.</p>
+
+  <!-- Prescriber Section -->
+  <div class="review-section">
+    <div class="review-section-header">
+      <h3 class="review-section-title">Prescriber Information</h3>
+      <button mat-button class="edit-btn" (click)="editPrescriber()">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+    </div>
+    <div class="review-grid">
+      <div class="review-item">
+        <span class="review-label">NPI</span>
+        <span class="review-value">{{ prescriber.npi || '—' }}</span>
+      </div>
+      <div class="review-item">
+        <span class="review-label">Name</span>
+        <span class="review-value">{{ prescriber.firstName }} {{ prescriber.lastName }}</span>
+      </div>
+      <div class="review-item">
+        <span class="review-label">Specialty</span>
+        <span class="review-value">{{ prescriber.specialty || '—' }}</span>
+      </div>
+      <div class="review-item">
+        <span class="review-label">Practice</span>
+        <span class="review-value">{{ prescriber.practiceName || '—' }}</span>
+      </div>
+      <div class="review-item">
+        <span class="review-label">Phone</span>
+        <span class="review-value">{{ prescriber.phone || '—' }}</span>
+      </div>
+      <div class="review-item">
+        <span class="review-label">Fax</span>
+        <span class="review-value">{{ prescriber.fax || '—' }}</span>
+      </div>
+      <div class="review-item">
+        <span class="review-label">Email</span>
+        <span class="review-value">{{ prescriber.email || '—' }}</span>
+      </div>
+      <div class="review-item full-width">
+        <span class="review-label">Address</span>
+        <span class="review-value">{{ prescriber.addressLine1 }}<ng-container *ngIf="prescriber.addressLine2">, {{ prescriber.addressLine2 }}</ng-container>, {{ prescriber.city }}, {{ prescriber.state }} {{ prescriber.zip }}</span>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider class="section-divider"></mat-divider>
+
+  <!-- Patient Section -->
+  <div class="review-section">
+    <div class="review-section-header">
+      <h3 class="review-section-title">Patient Information</h3>
+      <button mat-button class="edit-btn" (click)="editPatient()">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+    </div>
+    <div class="review-grid">
+      <div class="review-item">
+        <span class="review-label">Name</span>
+        <span class="review-value">{{ patient.firstName }} {{ patient.lastName }}</span>
+      </div>
+      <div class="review-item">
+        <span class="review-label">Date of Birth</span>
+        <span class="review-value">{{ patient.dateOfBirth || '—' }}</span>
+      </div>
+      <div class="review-item">
+        <span class="review-label">Sex</span>
+        <span class="review-value">{{ patient.sex || '—' }}</span>
+      </div>
+      <div class="review-item">
+        <span class="review-label">Phone</span>
+        <span class="review-value">{{ patient.phone || '—' }}</span>
+      </div>
+      <div class="review-item full-width">
+        <span class="review-label">Address</span>
+        <span class="review-value">{{ patient.addressLine1 }}, {{ patient.city }}, {{ patient.state }} {{ patient.zip }}</span>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider class="section-divider"></mat-divider>
+
+  <!-- Product Section -->
+  <div class="review-section">
+    <div class="review-section-header">
+      <h3 class="review-section-title">Product Selection</h3>
+      <button mat-button class="edit-btn" (click)="editProduct()">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+    </div>
+    <div class="review-grid">
+      <div class="review-item full-width">
+        <span class="review-label">Selected Product</span>
+        <span class="review-value">{{ productLabel }}</span>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider class="section-divider"></mat-divider>
+
+  <!-- Prescription Details -->
+  <div class="review-section">
+    <div class="review-section-header">
+      <h3 class="review-section-title">Prescription Details</h3>
+      <button mat-button class="edit-btn" (click)="editPrescription()">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+    </div>
+
+    <!-- Orenitram -->
+    <ng-container *ngIf="product === 'orenitram'">
+      <div class="review-grid">
+        <div class="review-item full-width">
+          <span class="review-label">Prescription Type</span>
+          <span class="review-value">{{ orenitramPrescriptionType }}</span>
+        </div>
+        <div class="review-item" *ngIf="orenitram.titrationKit">
+          <span class="review-label">Titration Kit</span>
+          <span class="review-value">Included (3-month supply, 0 refills)</span>
+        </div>
+        <div class="review-item" *ngIf="orenitram.titrateByAmount">
+          <span class="review-label">Titration</span>
+          <span class="review-value">{{ orenitram.titrateByAmount }} mg every {{ orenitram.titrateEveryDays }} days until {{ orenitram.untilGoalDose }} mg TID</span>
+        </div>
+        <div class="review-item" *ngIf="orenitram.initiateAtAmount">
+          <span class="review-label">Initiation</span>
+          <span class="review-value">{{ orenitram.initiateAtAmount }} mg {{ orenitram.initiateFrequency }}</span>
+        </div>
+        <div class="review-item">
+          <span class="review-label">Dispense</span>
+          <span class="review-value">{{ orenitram.dispenseType === '12months' ? '12 months refills' : (orenitram.refillsCount + ' refill(s)') }}</span>
+        </div>
+        <div class="review-item">
+          <span class="review-label">Nurse Education</span>
+          <span class="review-value">{{ orenitram.nurseEduType === 'specialty-pharmacy' ? 'Specialty Pharmacy Home Healthcare RN' : (orenitram.nurseEduType === 'prescriber-directed' ? 'Prescriber-directed' : '—') }}</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Remodulin -->
+    <ng-container *ngIf="product === 'remodulin'">
+      <div class="review-grid">
+        <div class="review-item">
+          <span class="review-label">Infusion Type</span>
+          <span class="review-value">{{ remodulin.infusionType === 'subcutaneous' ? 'Subcutaneous' : (remodulin.infusionType === 'intravenous' ? 'Intravenous' : '—') }}</span>
+        </div>
+        <div class="review-item">
+          <span class="review-label">Dosing Weight</span>
+          <span class="review-value">{{ remodulin.dosingWeight }} {{ remodulin.dosingWeightUnit }}</span>
+        </div>
+        <div class="review-item">
+          <span class="review-label">Initiation Dosage</span>
+          <span class="review-value">{{ remodulin.initiationDosageAmount }} {{ remodulin.initiationDosageUnit }}</span>
+        </div>
+        <div class="review-item">
+          <span class="review-label">Goal Dose</span>
+          <span class="review-value">{{ remodulin.goalDoseAmount }} {{ remodulin.goalDoseUnit }}</span>
+        </div>
+        <div class="review-item">
+          <span class="review-label">Location</span>
+          <span class="review-value">{{ remodulin.location || '—' }}</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Tyvaso -->
+    <ng-container *ngIf="product === 'tyvaso'">
+      <div class="review-grid">
+        <div class="review-item full-width">
+          <span class="review-label">Indication</span>
+          <span class="review-value">{{ tyvasoIndication }}</span>
+        </div>
+        <div class="review-item full-width">
+          <span class="review-label">Product</span>
+          <span class="review-value">{{ tyvasoProduct }}</span>
+        </div>
+        <div class="review-item" *ngIf="tyvaso.targetDoseType">
+          <span class="review-label">Target Dose</span>
+          <span class="review-value">{{ tyvaso.targetDoseType === 'recommended' ? '9-12 breaths (54-72 mcg) QID' : (tyvaso.targetDosageMcg + ' mcg per session QID') }}</span>
+        </div>
+        <div class="review-item" *ngIf="tyvaso.dpiTargetDose">
+          <span class="review-label">DPI Target Dose</span>
+          <span class="review-value">{{ tyvaso.dpiTargetDose === 'other' ? (tyvaso.dpiOtherDosageMcg + ' mcg') : (tyvaso.dpiTargetDose + ' mcg') }}</span>
+        </div>
+        <div class="review-item">
+          <span class="review-label">Location</span>
+          <span class="review-value">{{ tyvaso.location || '—' }}</span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="action-buttons">
+    <button mat-stroked-button type="button" class="btn-back" (click)="onBack()">Back</button>
+    <button mat-flat-button type="button" class="btn-next" (click)="onNext()">Next</button>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="step-container">
+  <nav class="breadcrumb">
+    <a>Home</a><span> &gt; </span><span>Product Details</span>
+  </nav>
+  <app-patient-banner></app-patient-banner>
+
+  <h2 class="section-title">Product Details</h2>
+  <p class="section-subtitle">Select at least one product.</p>
+
+  <form [formGroup]="form" (ngSubmit)="onNext()">
+    <mat-form-field appearance="outline" class="product-select">
+      <mat-label>Select Product</mat-label>
+      <mat-select formControlName="product">
+        <mat-option *ngFor="let p of productOptions" [value]="p.value">{{ p.label }}</mat-option>
+      </mat-select>
+      <mat-error>Please select a product</mat-error>
+    </mat-form-field>
+
+    <div class="action-buttons">
+      <button mat-stroked-button type="button" class="btn-back" (click)="onBack()">Back</button>
+      <button mat-flat-button type="submit" class="btn-next">Next</button>
+    </div>
+  </form>
+</div>
